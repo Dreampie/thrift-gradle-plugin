@@ -16,7 +16,7 @@ buildscript {
 		}
 	}
 	dependencies {
-		classpath "gradle.plugin.io.dreampie.gradle:thrift-gradle-plugin:0.4.0"
+		classpath "gradle.plugin.io.dreampie.gradle:thrift-gradle-plugin:0.4.4"
 	}
 }
 
@@ -27,7 +27,7 @@ Or for Gradle 2.1+:
 
 ```groovy
 plugins {
-	id "io.dreampie.thrift" version "0.4.0"
+	id "io.dreampie.thrift" version "0.4.4"
 }
 ```
 
