@@ -1,10 +1,10 @@
 buildscript {
-	repositories {
-		mavenLocal()
-	}
-	dependencies {
-		classpath 'io.dreampie.gradle:thrift-gradle-plugin:+'
-	}
+    repositories {
+        mavenLocal()
+    }
+    dependencies {
+        classpath 'io.dreampie.gradle:thrift-gradle-plugin:+'
+    }
 }
 
 apply plugin: 'java'
@@ -12,36 +12,39 @@ apply plugin: 'idea'
 apply plugin: 'io.dreampie.thrift'
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-	compile "org.apache.thrift:libthrift:0.9.3"
+    compile "org.apache.thrift:libthrift:0.9.3"
 }
 
 archivesBaseName = projectDir.name
 
 idea {
-	module {
-		inheritOutputDirs = false
-		outputDir = file("$buildDir/classes/main/")
-		name archivesBaseName
-	}
+    module {
+        inheritOutputDirs = false
+        outputDir = file("$buildDir/classes/main/")
+        name archivesBaseName
+    }
 }
 
 compileThrift {
-	thriftExecutable "thrift"
-	sourceFiles "src/main/resources/thrift/test.thrift"
-	outputDir "$buildDir/thrift"
+    Set<File> files = new HashSet<>()
+    files.add(file("src/main/resources/thrift/test.thrift"))
 
-	nowarn true
-	strict true
-	verbose true
-	recurse true
-	debug true
-	allowNegKeys true
-	allow64bitsConsts true
-	createGenFolder false
+    thriftExecutable "thrift"
+    sourceFiles files
+    outputDir "$buildDir/gen-java"
 
-	generator 'java', 'private-members'
+    nowarn true
+    strict true
+    verbose true
+    recurse true
+    debug true
+    allowNegKeys true
+    allow64bitsConsts true
+    createGenFolder false
+
+    generator 'java', 'private-members'
 }

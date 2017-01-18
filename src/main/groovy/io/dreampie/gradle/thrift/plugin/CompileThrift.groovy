@@ -45,6 +45,9 @@ class CompileThrift extends DefaultTask {
     final Map<String, String> generators = new LinkedHashMap<>()
 
     @Input
+    boolean fileMode = false
+
+    @Input
     boolean createGenFolder = false
 
     @Input
@@ -66,12 +69,20 @@ class CompileThrift extends DefaultTask {
     }
 
     def sourceFiles(Object... sourceFiles) {
+        this.sourceFiles(Arrays.asList(sourceFiles))
+    }
+
+    def sourceFiles(Collection<Object> sourceFiles) {
         sourceFiles.each { sourceFile ->
             this.sourceFiles.add(convertToFile(sourceFile))
         }
     }
 
     def sourceDirs(Object... sourceDirs) {
+        this.sourceDirs(Arrays.asList(sourceDirs))
+    }
+
+    def sourceDirs(Collection<Object> sourceDirs) {
         sourceDirs.each { sourceDir ->
             this.sourceDirs.add(convertToFile(sourceDir))
         }
@@ -83,15 +94,20 @@ class CompileThrift extends DefaultTask {
         if (this.outputDir == outputDir)
             return
         def oldOutputDir = currentOutputDir()
-        this.outputDir = outputDir
+        this.outputDir = convertToFile(outputDir)
         addSourceDir(oldOutputDir)
     }
 
-    def includeDir(Object includeDir) {
-        if (!(includeDir instanceof File))
-            includeDir = project.file(includeDir)
 
-        includeDirs << includeDir
+    def includeDirs(Object... includeDirs) {
+        this.includeDirs(Arrays.asList(includeDirs))
+    }
+
+    def includeDirs(Collection<Object> includeDirs) {
+        includeDirs.each {
+            includeDir ->
+                this.includeDirs.add(convertToFile(includeDir))
+        }
     }
 
     def generator(Object gen, Object... args) {
@@ -152,7 +168,9 @@ class CompileThrift extends DefaultTask {
             throw new GradleException("Could not create thrift output directory: ${outputDir.absolutePath}")
 
         // all file
-        sourceFiles.addAll(sourceDirs)
+        if (!fileMode) {
+            sourceFiles.addAll(sourceDirs)
+        }
 
         // expand all items.
         Set<String> resolvedSourceFiles = []
@@ -244,9 +262,9 @@ class CompileThrift extends DefaultTask {
             return item
         }
 
-        def result = new File(item.toString());
+        def result = new File(item.toString())
         if (result.exists()) {
-            return result;
+            return result
         }
 
         project.file(item)

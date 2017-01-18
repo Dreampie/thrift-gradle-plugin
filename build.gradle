@@ -21,7 +21,7 @@ apply plugin: 'maven-publish'
 
 group = 'io.dreampie.gradle'
 archivesBaseName = 'thrift-gradle-plugin'
-version = '0.4.8'
+version = '0.5.0'
 description = 'A gradle plugin for compiling Thrift IDL files using thrift compiler'
 
 ext {
