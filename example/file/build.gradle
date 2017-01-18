@@ -21,7 +21,7 @@ dependencies {
 compileThrift {
 	thriftExecutable "/usr/local/bin/thrift"
 	sourceFiles "src/main/resources/thrift/test.thrift"
-	outputDir "$buildDir/gen-src"
+	outputDir "$buildDir/thrift"
 
 	nowarn true
 	strict true
