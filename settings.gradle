@@ -1,2 +1,2 @@
 rootProject.name = 'thrift-gradle-plugin'
-include 'plugin','example/dir','example/file'
+include 'example/dir','example/file'

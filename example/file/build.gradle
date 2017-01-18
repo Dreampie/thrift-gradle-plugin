@@ -8,6 +8,7 @@ buildscript {
 }
 
 apply plugin: 'java'
+apply plugin: 'idea'
 apply plugin: 'io.dreampie.thrift'
 
 repositories {
@@ -16,6 +17,16 @@ repositories {
 
 dependencies {
 	compile "org.apache.thrift:libthrift:0.9.3"
+}
+
+archivesBaseName = projectDir.name
+
+idea {
+	module {
+		inheritOutputDirs = false
+		outputDir = file("$buildDir/classes/main/")
+		name archivesBaseName
+	}
 }
 
 compileThrift {

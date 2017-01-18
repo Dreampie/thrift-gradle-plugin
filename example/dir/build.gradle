@@ -1,8 +1,9 @@
 plugins {
-  id "io.dreampie.thrift" version "0.4.4"
+  id "io.dreampie.thrift" version "0.4.8"
 }
 
 apply plugin: 'java'
+apply plugin: 'idea'
 
 repositories {
   jcenter()
@@ -10,6 +11,16 @@ repositories {
 
 dependencies {
   compile group: 'org.apache.thrift', name: 'libthrift', version: '0.9.3'
+}
+
+archivesBaseName = projectDir.name
+
+idea {
+  module {
+    inheritOutputDirs = false
+    outputDir = file("$buildDir/classes/main/")
+    name archivesBaseName
+  }
 }
 
 compileThrift {
