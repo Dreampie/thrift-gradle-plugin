@@ -22,7 +22,3 @@ idea {
     name archivesBaseName
   }
 }
-
-compileThrift {
-  thriftExecutable "/usr/local/bin/thrift"
-}

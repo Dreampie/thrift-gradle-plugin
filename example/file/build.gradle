@@ -30,7 +30,7 @@ idea {
 }
 
 compileThrift {
-	thriftExecutable "/usr/local/bin/thrift"
+	thriftExecutable "thrift"
 	sourceFiles "src/main/resources/thrift/test.thrift"
 	outputDir "$buildDir/thrift"
 
