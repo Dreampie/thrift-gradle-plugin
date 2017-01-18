@@ -12,23 +12,23 @@
  * limitations under the License.
  */
 
-package org.jruyi.gradle.thrift.plugin
+package io.dreampie.gradle.thrift.plugin
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
 class ThriftPlugin implements Plugin<Project> {
 
-	public static final String COMPILE_THRIFT_TASK = 'compileThrift'
+    public static final String COMPILE_THRIFT_TASK = 'compileThrift'
 
-	@Override
-	void apply(Project project) {
+    @Override
+    void apply(Project project) {
 
-		def srcDir = 'src/main/thrift'
-		def dstDir = "${project.buildDir}/generated-sources/thrift"
+        def srcDir = "${project.projectDir}/src/main/resources/thrift"
+        def dstDir = "${project.projectDir}/src/main/java"
 
-		CompileThrift compileThrift = project.tasks.create(COMPILE_THRIFT_TASK, CompileThrift)
-		compileThrift.sourceDir(srcDir)
-		compileThrift.outputDir(dstDir)
-	}
+        CompileThrift compileThrift = project.tasks.create(COMPILE_THRIFT_TASK, CompileThrift)
+        compileThrift.sourceDirs(srcDir)
+        compileThrift.outputDir(dstDir)
+    }
 }

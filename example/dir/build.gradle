@@ -1,5 +1,5 @@
 plugins {
-  id "org.jruyi.thrift" version "0.3.1"
+  id "io.dreampie.thrift" version "0.4.4"
 }
 
 apply plugin: 'java'
@@ -10,4 +10,8 @@ repositories {
 
 dependencies {
   compile group: 'org.apache.thrift', name: 'libthrift', version: '0.9.3'
+}
+
+compileThrift {
+  thriftExecutable "/usr/local/bin/thrift"
 }

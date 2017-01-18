@@ -16,18 +16,18 @@ buildscript {
 		}
 	}
 	dependencies {
-		classpath "gradle.plugin.org.jruyi.gradle:thrift-gradle-plugin:0.4.0"
+		classpath "gradle.plugin.io.dreampie.gradle:thrift-gradle-plugin:0.4.0"
 	}
 }
 
-apply plugin: "org.jruyi.thrift"
+apply plugin: "io.dreampie.thrift"
 ```
 
 Or for Gradle 2.1+:
 
 ```groovy
 plugins {
-	id "org.jruyi.thrift" version "0.4.0"
+	id "io.dreampie.thrift" version "0.4.0"
 }
 ```
 
@@ -48,8 +48,8 @@ The Thrift plugin adds compileThrift task which compiles Thrift IDL files using 
 Task Property     | Type                | Default Value
 ------------------|---------------------|---------------------------------------------------
 thriftExecutable  | String              | thrift
-sourceDir         | File                | src/main/thrift
-sourceItems       | Object...           | src/main/thrift
+sourceDirs        | Object...           | src/main/resources/thrift
+sourceFiles       | Object...           | src/main/resources/thrift
 outputDir         | File                | _buildDir_/generated-sources/thrift
 includeDirs       | Set<File>           | []
 generators        | Map<String, String> | ['java':''] if JavaPlugin is applied, otherwise []
@@ -60,7 +60,7 @@ recurse           | boolean             | false
 debug             | boolean             | false
 allowNegKeys      | boolean             | false
 allow64bitsConsts | boolean             | false
-createGenFolder   | boolean             | true
+createGenFolder   | boolean             | false
 
 If createGenFolder is set to false, no gen-* folder will be created.
 

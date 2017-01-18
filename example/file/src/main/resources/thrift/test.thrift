@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-namespace java org.jruyi.gradle.thrift.plugin.test
+namespace java io.dreampie.gradle.thrift.plugin.test
 
 struct TestStruct {
 	1:required i32 num = 0,

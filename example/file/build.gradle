@@ -1,0 +1,36 @@
+buildscript {
+	repositories {
+		mavenLocal()
+	}
+	dependencies {
+		classpath 'io.dreampie.gradle:thrift-gradle-plugin:+'
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'io.dreampie.thrift'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	compile "org.apache.thrift:libthrift:0.9.3"
+}
+
+compileThrift {
+	thriftExecutable "/usr/local/bin/thrift"
+	sourceFiles "src/main/resources/thrift/test.thrift"
+	outputDir "$buildDir/gen-src"
+
+	nowarn true
+	strict true
+	verbose true
+	recurse true
+	debug true
+	allowNegKeys true
+	allow64bitsConsts true
+	createGenFolder false
+
+	generator 'java', 'private-members'
+}
