@@ -45,22 +45,23 @@ The Thrift plugin adds compileThrift task which compiles Thrift IDL files using 
 
 ##### Table-1 Task Properties of compileThrift
 
-Task Property     | Type                | Default Value
-------------------|---------------------|---------------------------------------------------
-thriftExecutable  | String              | thrift
-sourceDirs        | Object...           | src/main/resources/thrift
-sourceFiles       | Object...           | src/main/resources/thrift
-outputDir         | File                | _buildDir_/generated-sources/thrift
-includeDirs       | Set<File>           | []
-generators        | Map<String, String> | ['java':''] if JavaPlugin is applied, otherwise []
-nowarn            | boolean             | false
-strict            | boolean             | false
-verbose           | boolean             | false
-recurse           | boolean             | false
-debug             | boolean             | false
-allowNegKeys      | boolean             | false
-allow64bitsConsts | boolean             | false
-createGenFolder   | boolean             | false
+Task Property     | Type                           | Default Value
+------------------|--------------------------------|---------------------------------------------------
+thriftExecutable  | String                         | thrift
+sourceDirs        | Object.../Collection<Object>   | $projectDir/src/main/resources/thrift (Object can be convert to dir/file)
+sourceFiles       | Object.../Collection<Object>   | [] (Object can be convert to dir/file)
+outputDir         | Object                         | $projectDir/src/java/main (Object can be convert to dir)
+includeDirs       | Object.../Collection<Object>   | [] (Object can be convert to dir/file)
+generators        | Map<String, String>            | ['java':''] if JavaPlugin is applied, otherwise []
+fileMode          | boolean                        | false  only generate sourceFiles, no sourceDirs
+nowarn            | boolean                        | false
+strict            | boolean                        | false
+verbose           | boolean                        | false
+recurse           | boolean                        | false
+debug             | boolean                        | false
+allowNegKeys      | boolean                        | false
+allow64bitsConsts | boolean                        | false
+createGenFolder   | boolean                        | false
 
 If createGenFolder is set to false, no gen-* folder will be created.
 
@@ -74,7 +75,7 @@ In case a source is a directory, the directory will be scanned recursively for *
 
 ```groovy
 compileThrift {
-	recurse true
+	recurse true //generate include file
 
 	generator 'html'
 	generator 'java', 'private-members'
