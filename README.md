@@ -33,7 +33,7 @@ plugins {
 
 ### Example
 
-See the `examples/test2` directory for a very simple example.
+See the `example/file` directory for a very simple example.
 
 ### Implicitly Applied Plugins
 
