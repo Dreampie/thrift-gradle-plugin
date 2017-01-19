@@ -16,7 +16,7 @@ buildscript {
 		}
 	}
 	dependencies {
-		classpath "gradle.plugin.io.dreampie.gradle:thrift-gradle-plugin:0.4.5"
+		classpath "gradle.plugin.io.dreampie.gradle:thrift-gradle-plugin:0.5.2"
 	}
 }
 
@@ -27,7 +27,7 @@ Or for Gradle 2.1+:
 
 ```groovy
 plugins {
-	id "io.dreampie.thrift" version "0.4.5"
+	id "io.dreampie.thrift" version "0.5.2"
 }
 ```
 
@@ -48,11 +48,11 @@ The Thrift plugin adds compileThrift task which compiles Thrift IDL files using 
 Task Property     | Type                           | Default Value
 ------------------|--------------------------------|---------------------------------------------------
 thriftExecutable  | String                         | thrift
-sourceDirs        | Object.../Collection<Object>   | ['$projectDir/src/main/resources/thrift'] (Object can be convert to dir/file)
-sourceFiles       | Object.../Collection<Object>   | [] (Object can be convert to dir/file)
-outputDir         | Object                         | ['$projectDir/src/main/java'] (Object can be convert to dir)
-includeDirs       | Object.../Collection<Object>   | [] (Object can be convert to dir/file)
-generators        | Map<String, String>            | ['java':''] if JavaPlugin is applied, otherwise []
+sourceDirs        | Object.../Collection<Object>   | \['$projectDir/src/main/resources/thrift'\] (Object can be convert to dir/file)
+sourceFiles       | Object.../Collection<Object>   | \[\] (Object can be convert to dir/file)
+outputDir         | Object                         | \['$projectDir/src/main/java'\] (Object can be convert to dir)
+includeDirs       | Object.../Collection<Object>   | \[\] (Object can be convert to dir/file)
+generators        | Map<String, String>            | \['java':''\] if JavaPlugin is applied, otherwise \[\]
 nowarn            | boolean                        | false
 strict            | boolean                        | false
 verbose           | boolean                        | false
