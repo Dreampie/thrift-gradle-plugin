@@ -45,9 +45,6 @@ class CompileThrift extends DefaultTask {
     final Map<String, String> generators = new LinkedHashMap<>()
 
     @Input
-    boolean fileMode = false
-
-    @Input
     boolean createGenFolder = false
 
     @Input
@@ -151,6 +148,9 @@ class CompileThrift extends DefaultTask {
         }
 
         if (removed) {
+            if (!outputDir.deleteDir())
+                throw new GradleException("Could not delete thrift output directory: ${outputDir.absolutePath}")
+
             compileAll()
             return
         }
@@ -164,13 +164,11 @@ class CompileThrift extends DefaultTask {
     }
 
     def compileAll() {
-        if (!outputDir.isDirectory() && !outputDir.mkdirs())
+        if (!outputDir.exists() && !outputDir.mkdirs())
             throw new GradleException("Could not create thrift output directory: ${outputDir.absolutePath}")
 
         // all file
-        if (!fileMode) {
-            sourceFiles.addAll(sourceDirs)
-        }
+        sourceFiles.addAll(sourceDirs)
 
         // expand all items.
         Set<String> resolvedSourceFiles = []

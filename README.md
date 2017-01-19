@@ -48,12 +48,11 @@ The Thrift plugin adds compileThrift task which compiles Thrift IDL files using 
 Task Property     | Type                           | Default Value
 ------------------|--------------------------------|---------------------------------------------------
 thriftExecutable  | String                         | thrift
-sourceDirs        | Object.../Collection<Object>   | $projectDir/src/main/resources/thrift (Object can be convert to dir/file)
+sourceDirs        | Object.../Collection<Object>   | ['$projectDir/src/main/resources/thrift'] (Object can be convert to dir/file)
 sourceFiles       | Object.../Collection<Object>   | [] (Object can be convert to dir/file)
-outputDir         | Object                         | $projectDir/src/java/main (Object can be convert to dir)
+outputDir         | Object                         | ['$projectDir/src/main/java'] (Object can be convert to dir)
 includeDirs       | Object.../Collection<Object>   | [] (Object can be convert to dir/file)
 generators        | Map<String, String>            | ['java':''] if JavaPlugin is applied, otherwise []
-fileMode          | boolean                        | false  only generate sourceFiles, no sourceDirs
 nowarn            | boolean                        | false
 strict            | boolean                        | false
 verbose           | boolean                        | false
