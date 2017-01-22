@@ -218,6 +218,7 @@ class CompileThrift extends DefaultTask {
         if (debug) cmdLine << '-debug'
         cmdLine << source
 
+        logger.info("Execute command: {}", cmdLine)
         def result = project.exec {
             commandLine cmdLine
         }
