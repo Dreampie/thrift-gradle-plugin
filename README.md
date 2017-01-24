@@ -27,7 +27,7 @@ Or for Gradle 2.1+:
 
 ```groovy
 plugins {
-	id "io.dreampie.thrift" version "0.5.2"
+	id "io.dreampie.thrift" version "0.5.5"
 }
 ```
 
@@ -53,6 +53,7 @@ sourceFiles       | Object.../Collection<Object>   | \[\] (Object can be convert
 outputDir         | Object                         | \['$projectDir/src/main/java'\] (Object can be convert to dir)
 includeDirs       | Object.../Collection<Object>   | \[\] (Object can be convert to dir/file)
 generators        | Map<String, String>            | \['java':''\] if JavaPlugin is applied, otherwise \[\]
+autoCompile       | boolean                        | false if true while execute before compileJava
 nowarn            | boolean                        | false
 strict            | boolean                        | false
 verbose           | boolean                        | false

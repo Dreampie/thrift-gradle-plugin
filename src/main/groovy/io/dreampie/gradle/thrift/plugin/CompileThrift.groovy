@@ -128,6 +128,15 @@ class CompileThrift extends DefaultTask {
         addSourceDir(oldOutputDir)
     }
 
+    def autoCompile(boolean autoCompile) {
+        Task compileJava = project.tasks.getByName(JavaPlugin.COMPILE_JAVA_TASK_NAME);
+        if (compileJava == null)
+            return
+
+        if (autoCompile)
+            compileJava.dependsOn this
+    }
+
     @TaskAction
     def compileThrift(IncrementalTaskInputs inputs) {
 
@@ -241,8 +250,6 @@ class CompileThrift extends DefaultTask {
         if (oldOutputDir != null)
             project.sourceSets.main.java.srcDirs -= oldOutputDir
         project.sourceSets.main.java.srcDir genJava.absolutePath
-
-        compileJava.dependsOn this
     }
 
     private def addSourceDir(File oldOutputDir) {
